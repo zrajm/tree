@@ -1,0 +1,181 @@
+<!DOCTYPE html><!--*- js-indent-level: 2; css-indent-offset: 2 -*-->
+<!-- Copyright 2022 by zrajm. License: CC BY-SA (text), GPLv2 (code) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="tree.css">
+<script src="tree.js"></script>
+<style>
+  html {
+      line-height: 1.6;
+      max-width: 50rem;
+      margin: 0 auto;
+  }
+  tt, pre {
+      font-size: .9rem;
+      border: 1px solid #0002;
+      background: #0002;
+      border-radius: .25rem;
+      padding: .25rem .5rem;
+  }
+  tt { padding: 0 .125rem; }
+  header, pre, iframe { margin: 1.5rem 2rem; }
+  header {
+      font-family: sans;
+      margin: 0 2rem;
+      border-left: .25rem solid #0003;
+      padding: .5rem 1rem;
+  }
+  header :first-child { margin-top: 0; }
+  header :last-child { margin-bottom: 0; }
+  footer {
+      text-align: center;
+      opacity: .75;
+      margin: 2em 0 1em;
+  }
+  tree { border: 1px solid #0004; }
+</style>
+
+<title>Simple Tree Diagrams for Web Pages</title>
+<h1>Simple Tree Diagrams for Web Pages</h1>
+
+<header>
+  <p>This a simple little Javascript script for drawing tree diagrams on web
+  pages. It only requires Javascript (no jQuery needed) and degrades pretty
+  gracefully if Javascript isn’t available.
+
+  <p><span style="opacity:.5">Written
+    by <a href="zrajm@klingonska.org">zrajm</a>, October 2022</span>
+</header>
+
+<p>Each tree is defined by a <tt>&lt;tree></tt> tag, containing a nested set
+of <tt>&lt;node></tt> tags and an optional <tt>&lt;treecaption></tt> tag. Trees
+are drawn as they scroll into view or otherwise become visible (rather than
+when the page load) this is so that the browser does not get overwhelmed on
+pages containing a lots of trees. As each tree is being processed, HTML classes
+are added to the corresponding tags, so that you may easily target the trees
+and their nodes in your CSS. The default CSS also has a pretty graceful
+degradation when Javascript isn’t enabled in the browser.
+
+<p>As each tree is being dawn its <tt>&lt;tree></tt> tag gets
+the <tt>drawn</tt> class added to it, and to each of its <tt>&lt;node></tt>
+tags either the class <tt>branch</tt> or the class <tt>leaf</tt> is added. Into
+each of the branching nodes <tt>&lt;line></tt> tags are inserted pointing to
+its subnodes. (These <tt>&lt;line></tt> tags are elements with a black
+background and a one pixel width, whose height and rotation are calculated by
+the tree script.)
+
+<p>To use the trees, include the relevant stylesheet, and Javascipt, then
+simply insert however many <tt>&lt;tree></tt> tags you require on your page. It
+should look something like this:
+
+<pre>
+&lt;link rel="stylesheet" href="tree.css">
+&lt;script src="tree.js">&lt;/script>
+&lt;tree>
+  &lt;node pos="S">
+    &lt;node pos="VP">
+      &lt;node pos="NP">
+        &lt;node pos="N">&lt;b>tera’&lt;/b>&lt;/node>
+      &lt;/node>
+      &lt;node pos="V">&lt;b>vIghoS.&lt;/b>&lt;/node>
+    &lt;/node>
+  &lt;/node>
+  &lt;treecaption>&lt;i>I go to Earth.&lt;/i>&lt;/treecaption>
+&lt;/tree>
+</pre>
+
+<p>The resulting trees look like this:
+
+<figure>
+<tree>
+  <node pos="S">
+    <node pos="VP">
+      <node pos="NP">
+        <node pos="N"><b>qa’vIn</b></node>
+      </node>
+      <node pos="V"><b>tlhutlh</b></node>
+    </node>
+    <node pos="NP">
+      <node pos="N"><b>Dave.</b></node>
+    </node>
+  </node>
+  <treecaption><i>Dave drinks coffee.</i></treecaption>
+</tree>
+
+<tree>
+  <node pos="S">
+    <node pos="VP">
+      <node pos="NP">
+        <node pos="N"><b>tera’</b></node>
+      </node>
+      <node pos="V"><b>ghoS</b></node>
+      </node>
+    <node pos="NP">
+      <node pos="N"><b>Dave.</b></node>
+    </node>
+  </node>
+  <treecaption><i>Dave goes to Earth.</i></treecaption>
+</tree>
+
+<tree>
+  <node pos="S">
+    <node pos="VP">
+      <node pos="NP">
+        <node pos="N"><b>tera’</b></node>
+      </node>
+      <node pos="V"><b>vIghoS.</b></node>
+    </node>
+  </node>
+  <treecaption><i>I go to Earth.</i></treecaption>
+</tree>
+
+<tree>
+  <node pos="S">
+    <node pos="VP">
+      <node pos="NP">
+        <node pos="N"><b>tlhIngan</b></node>
+        <node pos="N"><b>Hol</b></node>
+      </node>
+      <node pos="V"><b>vIjatlhlaHbe’.</b></node>
+    </node>
+  </node>
+  <treecaption><i>I cannot speak Klingon.</i></treecaption>
+</tree>
+
+<tree>
+  <node pos="S">
+    <node pos="VP">
+      <node pos="CP">
+        <node pos="NP">
+          <node pos="N"><b>tlhIngan</b></node>
+          <node pos="N"><b>Hol</b></node>
+        </node>
+        <node pos="V"><b>jatlh</b></node>
+      </node>
+      <node pos="V"><b>neH</b></node>
+    </node>
+    <node pos="NP">
+      <node pos="N"><b>Dave.</b></node>
+    </node>
+  </node>
+  <treecaption><i>Dave wants to speak Klingon.</i></treecaption>
+</tree>
+</figure>
+
+<p>Above parse trees were taken from this video (which I found when I was
+looking around to see whether anyone had attempted to write a context-free
+grammar for Klingon):
+
+<p><iframe width="560" height="315"
+  src="https://www.youtube.com/embed/g-SYhFOh67Y" title="YouTube video player"
+  frameborder="0" allowfullscreen></iframe>
+
+<p>Well, that’s it for now. Download the <a href="tree.css">CSS file</a>
+and <a href="tree.js">Javascript files</a> if you want to try it out for
+yourself, and have a look at the source code of this page for an example
+implementation.
+
+<footer>Copyright 2022 by <a href="zrajm@klingonska.org">zrajm</a>. License: CC
+BY-SA (text), GPLv2 (code).</footer>
+
+<!--[eof]-->
