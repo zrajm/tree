@@ -1,12 +1,10 @@
 /*-*- css-indent-offset: 2 -*-*/
+/* Copyright 2022 by zrajm. License: CC BY-SA (text), GPLv2 (code) */
+
 tree, tree node, tree :before {
   box-sizing: content-box;
-  ZZZdisplay: inline-block;
   border-radius: .25em;
-  XXXbackground: #0001; /* FIXME: Remove this */
 }
-
-/* if remove these, also remove ZZZ in properties elsewhere */
 tree {
   flex-direction: column;
   align-content: flex-end;
@@ -23,36 +21,28 @@ tree node.leaf {
   justify-content: center;
   gap: 0;
 }
-
 tree:not(.drawn) node {
   background: #0001;
 }
 tree.drawn node[pos=""]:before {
   background: #f80;
 }
-tree, tree node {
-  XXvertical-align: top;
-}
 node.leaf {
-  ZZZpadding-bottom: .25em;
   font-weight: bold;
 }
 tree node {
   position: relative;
   padding-top: calc(1em + 2em);
-  XXoverflow: hidden;
 }
 tree node:before {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  XXbackground: #0000;
 }
 tree node[pos]:before { content: attr(pos); }
 tree node:before {
   content: "?";
   position: absolute; left: 0; top: 0;
   padding-top: .125em;
-  ZZZpadding-top: .25em;
   height: calc((1em * var(--lead)) + .25em);
   min-width: 100%;
   font-weight: normal;
@@ -65,7 +55,6 @@ tree {
   padding: .5em .5em;
   text-align: center;
 }
-/* Line from branch to subbranch or leaf. */
 tree line {
   position: absolute; left: 50%; top: calc(1em * var(--lead) + .25em);
   width: 1px; height: 1px; background: #000;
