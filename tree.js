@@ -31,9 +31,9 @@ function makeTreeNodes(tree) {
 }
 
 // Creates full tree, including caption. Calls makeTreeNodes() internally.
-function makeTree(tree, caption) {
-  const htmlNodes = makeTreeNodes(tree)
-  return `<tree>${htmlNodes}<treecaption>${caption}</treecaption></tree>`
+function makeTree(tree, caption = '') {
+  if (caption) { caption = `<treecaption>${caption}</treecaption>` }
+  return `<tree>${makeTreeNodes(tree)}${caption}</tree>`
 }
 
 // Invoke cb(tag) when elements matching CSS selector <sel> show up on screen.
