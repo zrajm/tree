@@ -52,21 +52,18 @@
 <h2 id=html>HTML Structure</h2>
 
 <p>Each tree is defined by a <tt>&lt;tree></tt> tag, containing a nested set
-of <tt>&lt;node></tt> tags and an optional <tt>&lt;treecaption></tt> tag. Trees
-are drawn as they scroll into view or otherwise become visible (rather than
-when the page load) this is so that the browser does not get overwhelmed on
-pages containing a lots of trees. As each tree is being processed, HTML classes
-are added to the corresponding tags, so that you may easily target the trees
-and their nodes in your CSS. The default CSS also has a pretty graceful
-degradation when Javascript isn’t enabled in the browser.
+of <tt>&lt;node></tt> tags and an optional <tt>&lt;treecaption></tt> tag. Each
+tree is drawn as it scrolls into view (or otherwise become visible) rather than
+when the is page loaded—this to stop the browser from getting overwhelmed when
+processing pages with lots of trees.
 
-<p>As each tree is being dawn its <tt>&lt;tree></tt> tag gets
-the <tt>drawn</tt> class added to it, and to each of its <tt>&lt;node></tt>
-tags either the class <tt>branch</tt> or the class <tt>leaf</tt> is added. Into
-each of the branching nodes <tt>&lt;line></tt> tags are inserted pointing to
-its subnodes. (These <tt>&lt;line></tt> tags are elements with a black
-background and a one pixel width, whose height and rotation are calculated by
-the tree script.)
+<p>As a tree is rendered, the HTML class <tt>drawn</tt> is added to
+it’s <tt>&lt;tree></tt> tag, and either the class <tt>branch</tt>
+or <tt>leaf</tt> is added to each of its <tt>&lt;node></tt> tags. This so that
+you may style the trees and nodes using stylesheets. Each branching node also
+have <tt>&lt;line></tt> tags added to the start of their content, one for each
+subnode. (The default CSS also has a pretty graceful degradation when
+Javascript isn’t enabled in the browser.)
 
 <p>To use the trees, include the relevant stylesheet, and Javascipt, then
 simply insert however many <tt>&lt;tree></tt> tags you require on your page. It
