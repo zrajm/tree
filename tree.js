@@ -1,6 +1,41 @@
 // -*- js-indent-level: 2 -*-
 // Copyright 2022 by zrajm. License: CC BY-SA (text), GPLv2 (code)
 
+// Usage: makeTreeNodes(tree)
+//
+// Returns HTML structure for the branches (nodes) of a tree diagram. Input
+// <tree> is a recursively nested list-of-lists, where first element of each
+// list is assumed to be the label for that node/subtree and subsequent list
+// items are its child nodes. (I.e. first element should always be string,
+// following elements should be either lists [=branch node] or strings [=leaf
+// node].)
+//
+// Example Input
+// -------------
+//   makeTreeNodes(['NP',
+//     ['N', 'tlhIngan'],
+//     ['N', 'Hol']
+//   ])
+//
+// Results in the following output
+// -------------------------------
+//   <node pos="NP">
+//     <node pos="N">tlhIngan</node>
+//     <node pos="N">Hol</node>
+//   </node>
+//
+function makeTreeNodes(tree) {
+  return Array.isArray(tree)
+    ? `<node pos="${tree[0]}">${tree.slice(1).map(makeTreeNodes).join('')}</node>`
+    : tree
+}
+
+// Creates full tree, including caption. Calls makeTreeNodes() internally.
+function makeTree(tree, caption) {
+  const htmlNodes = makeTreeNodes(tree)
+  return `<tree>${htmlNodes}<treecaption>${caption}</treecaption></tree>`
+}
+
 // Invoke cb(tag) when elements matching CSS selector <sel> show up on screen.
 function onshow(sel, cb) {
   const o = new IntersectionObserver(e => {

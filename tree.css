@@ -27,9 +27,6 @@ tree:not(.drawn) node {
 tree.drawn node[pos=""]:before {
   background: #f80;
 }
-node.leaf {
-  font-weight: bold;
-}
 tree node {
   position: relative;
   padding-top: calc(1em + 2em);
