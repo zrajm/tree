@@ -37,7 +37,7 @@
 </style>
 
 <title>Simple Tree Diagrams for Web Pages</title>
-<h1>Simple Tree Diagrams for Web Pages</h1>
+<h1 id=top>Simple Tree Diagrams for Web Pages</h1>
 
 <header>
   <p>This a simple little Javascript script for drawing tree diagrams on web
@@ -47,6 +47,9 @@
   <p><span style="opacity:.5">Written
     by <a href="zrajm@klingonska.org">zrajm</a>, October 2022</span>
 </header>
+
+
+<h2 id=html>HTML Structure</h2>
 
 <p>Each tree is defined by a <tt>&lt;tree></tt> tag, containing a nested set
 of <tt>&lt;node></tt> tags and an optional <tt>&lt;treecaption></tt> tag. Trees
@@ -84,6 +87,9 @@ should look something like this:
   &lt;treecaption>&lt;i>I go to Earth.&lt;/i>&lt;/treecaption>
 &lt;/tree>
 </pre>
+
+
+<h2 id=appearance>Appearance</h2>
 
 <p>The resulting trees look like this:
 
@@ -162,6 +168,9 @@ should look something like this:
   <treecaption><i>Dave wants to speak Klingon.</i></treecaption>
 </tree>
 </figure>
+
+
+<h2 id=inspiration>Inspiration</h2>
 
 <p>Above parse trees were taken from this video (which I found when I was
 looking around to see whether anyone had attempted to write a context-free
